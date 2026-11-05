@@ -12,15 +12,15 @@ const PORT = process.env.PORT || 3000;
 const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL || 'a.a.jabir.bght@gmail.com';
 const SUPER_ADMIN_PASSWORD = process.env.SUPER_ADMIN_PASSWORD || 'Jabir@2024';
 
-// ═══════════════ DIRECTORY SETUP ═══════════════
+// ═══════════════ DIRECTORY SETUP (Render Safe) ═══════════════
 const DATA_DIR = path.join(__dirname, 'data');
 const UPLOAD_DIR = path.join(__dirname, 'data', 'uploads');
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
-// ═══════════════ DATABASE SETUP (LibSQL / WASM - No Compile Error) ═══════════════
-const dbUrl = isProduction ? 'file:/data/news.db' : 'file:data/news.db';
+// ═══════════════ DATABASE SETUP (LibSQL Absolute Path) ═══════════════
+const dbUrl = 'file:' + path.join(DATA_DIR, 'news.db');
 const db = createClient({ url: dbUrl });
 
 // ═══════════════ MULTER (IMAGE UPLOAD) ═══════════════
