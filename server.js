@@ -12,10 +12,9 @@ const PORT = process.env.PORT || 3000;
 const SUPER_ADMIN_EMAIL = process.env.SUPER_ADMIN_EMAIL || 'a.a.jabir.bght@gmail.com';
 const SUPER_ADMIN_PASSWORD = process.env.SUPER_ADMIN_PASSWORD || 'Jabir@2024';
 
-// ═══════════════ DIRECTORY SETUP (Railway Volume) ═══════════════
-const isProduction = process.env.NODE_ENV === 'production';
-const DATA_DIR = isProduction ? '/data' : path.join(__dirname, 'data');
-const UPLOAD_DIR = isProduction ? '/data/uploads' : path.join(__dirname, 'data', 'uploads');
+// ═══════════════ DIRECTORY SETUP ═══════════════
+const DATA_DIR = path.join(__dirname, 'data');
+const UPLOAD_DIR = path.join(__dirname, 'data', 'uploads');
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
